@@ -1,0 +1,21 @@
+{
+  "name": "glide_rose",
+  "version": "1.0.0",
+  "description": "BluePeople Test",
+  "keywords": [
+    "BluePeople"
+  ],
+  "license": "ISC",
+  "author": "Luis Manuel Vazquez Solis",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc", 
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.2",
+    "typescript": "^5.9.3"
+  }
+}
