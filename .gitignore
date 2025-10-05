@@ -1,2 +1,5 @@
-./Node TS/dist
-./Node TS/node_modules
+Node\ TS/node_modules/
+Node\ TS/dist/
+Node\ TS/package-lock.json
+
+.vscode/ 
