@@ -14,7 +14,7 @@ Since this is the real world, there are some edge cases we need for you to accou
 1. Once the sell by date has passed, Quality degrades twice as fast
 2. The Quality of an item is never negative
 3. "Aged Brie" actually increases in Quality the older it gets
-4. The Quality of an item is never more than 50
+4. The Quality of an item is never more than 50 // only if it is legendary
 5. "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
 6. "Backstage passes", like aged brie, increases in Quality as it's SellIn value approaches; Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert
 7. "Conjured" items degrade in Quality twice as fast as normal items
@@ -29,14 +29,26 @@ We currently keep our inventory in a hand written list. Since Allison wants to g
 
 ### Additional Requirements:
 1. There is no requirement for what you choose as your interface into the system, however whatever interface you choose should, at a minimum, provide for the following commands:
-	1. Ask for the entire list of inventory
-	2. Ask for the details of a single item by name
+	1. Ask for the entire list of inventory 
+	//curl -X GET http://localhost:3000/api/items 2>/dev/null
+	2. Ask for the details of a single item by name 
+	// curl -X POST http://localhost:3000/graphql \
+		-H "Content-Type: application/json" \
+		-d '{"query":"{ item(name: \"Aged Brie\") { name sellIn quality category type isLegendary isExpired } }"}' \
+		2>/dev/null
 	3. Progress to the next day
-	4. List of trash we should throw away (Quality = 0)
+	// curl -X POST http://localhost:3000/api/items/update 2>/dev/null | head -c 800
+	4. List of trash we should throw away (Quality = 0) 
+	// curl -X GET http://localhost:3000/api/items 2>/dev/null | grep -oP '"name":"[^"]+","sellIn":[^,]+,"quality":0[,}]'
+
 2. In this repo, you will find an inventory.txt file. This is the initial inventory your solution should load. After that, you may store the data however you wish.
 
 ## The Fine Print
 Please use whatever technology and techniques you feel are applicable to solve the problem. We suggest that you approach this exercise as if this code was part of a larger system. The end result should be representative of your abilities and style.
+
+/* 
+I'm trying to applay clean arquitecture in Node JS,express, Inversify for ioc, GraphQL with apoloserver, Squelize for DB and vitest for testing but also i leave a memory repo in case u want to test it fast or if u want to create a mysql db for it 
+*/
 
 Please fork this repository, then when you have completed your solution, issue a pull request to notify us that you are ready for us to review your submission.
 
@@ -45,5 +57,6 @@ Have fun.
 ## Things To Consider
 Here are a couple of thoughts about the domain that could influence your response:
 
-* The world is a magical place - you never know when the next "special requirement" might pop up - how can you make this painless?
+* The world is a magical place - you never know when the next "special requirement" might pop up - how can you make this painless?  
 * Keep in mind that accurate inventory is a must for the shop, how might you ensure that the future programmer who takes over the code while you are off adventuring doesn't mistakenly mess things up?
+
