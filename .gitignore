@@ -1,5 +1,17 @@
 Node\ TS/node_modules/
 Node\ TS/dist/
 Node\ TS/package-lock.json
+Node\ TS/.env
 
-.vscode/ 
+Node\ TS/*.js
+Node\ TS/*.js.map
+Node\ TS/*.d.ts
+Node\ TS/*.d.ts.map
+ 
+.vscode/
+.DS_Store
+Thumbs.db
+
+*.log
+npm-debug.log*
+
